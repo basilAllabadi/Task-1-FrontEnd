@@ -1,0 +1,63 @@
+<div class="container text-center align-items-center col-8">
+    <div class="row align-items-center">
+        <h3>Students List <span style="color: red;">{{studentsCount?studentsCount:""}}</span></h3>
+        <table class="table table-bordered ">
+            <thead class="table-light">
+                <tr>
+                    <th>Student Number</th>
+                    <th>Student Name</th>
+                    <th>Gender</th>
+                    <th>Major Speciality</th>
+                    <th>Mobile No</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of studentsService.allStudents">
+                    <td>{{student.studentNumber}}</td>
+                    <td>{{student.name | titlecase}}</td>
+                    <td>{{student.gender | titlecase}}</td>
+                    <td>{{student.majorSpecialty | titlecase}}</td>
+                    <td>{{student.mobileNo}}</td>
+
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container text-center align-items-center col-10">
+    <div class="row align-items-center">
+        <h3>Courses List <span style="color: red;"> {{(coursesCount?coursesCount:"")}}</span></h3>
+        <table class="table table-bordered ">
+            <thead class="table-light">
+                <tr>
+                    <th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Faculty</th>
+                    <th>Course Credit Hours</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let course of coursesService.allCourses" [id]="course.id">
+                    <td>{{course.courseNumber}}</td>
+                    <td>{{course.name | titlecase}}</td>
+                    <td>{{course.faculty | titlecase}}</td>
+                    <td>{{course.courseCreditHours}}</td>
+                    <td>{{course.courseStartDate|date}}</td>
+                    <td>{{course.courseEndDate |date}}</td>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

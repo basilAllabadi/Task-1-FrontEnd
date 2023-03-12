@@ -1,0 +1,8 @@
+p{
+    text-align: left;
+}
+.container{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+}

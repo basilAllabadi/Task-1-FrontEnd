@@ -1,0 +1,28 @@
+<div class="container text-center align-items-center col-8">
+    <div class="row align-items-center">
+        <table class="table table-bordered ">
+            <thead class="table-light">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Faculty</th>
+                    <th>Major</th>
+                    <th>Course</th>
+                    <th>Grade</th>
+                    <th>Result</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let query of queriesService.searchedGrades">
+                    <td>{{query.studentName | titlecase}}</td>
+                    <td>{{query.studentFaculty | titlecase}}</td>
+                    <td>{{query.majorSpeciality | titlecase}}</td>
+                    <td>{{query.courseName | titlecase}}</td>
+                    <td>{{query.grade/100|percent}}</td>
+                    <td>{{query.result==1?"Pass":"Fail"}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

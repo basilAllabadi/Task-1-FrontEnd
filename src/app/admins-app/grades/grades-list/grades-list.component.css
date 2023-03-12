@@ -1,0 +1,14 @@
+.table {
+    margin-top: 50px;
+}
+.delete_button{
+    color:red;
+    font-weight: 900;
+    font-size: 8;
+}
+.delete_button:hover{
+    cursor: pointer;
+    }
+    td:hover{
+        cursor: pointer;
+        }

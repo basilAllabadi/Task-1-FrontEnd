@@ -1,0 +1,32 @@
+<div class="container text-center align-items-center col-8">
+    <div class="row align-items-center">
+        <table class="table table-bordered ">
+            <thead class="table-light">
+                <tr>
+                    <th>Student Name</th>
+                    <th>Course Name</th>
+                    <th>First Exam</th>
+                    <th>Second Exam</th>
+                    <th>Final Exam</th>
+                    <th>Grade</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let grade of gradesService.allGrades" [id]="grade.id" (click)="gradeChoose(grade.id)">
+                    <td>{{grade.studentName | titlecase}}</td>
+                    <td>{{grade.courseName | titlecase}}</td>
+                    <td>{{grade.firstexam}}</td>
+                    <td>{{grade.secondexam}}</td>
+                    <td>{{grade.finalexam}}</td>
+                    <td>{{grade.grade/100|percent}}</td>
+                    <td (click)="deleteGrade(grade.id)" class="delete_button"> <mat-icon>delete_forever</mat-icon></td>
+
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+<div>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <h2>Students Entry</h2>
+                <form class="studentEntry" [formGroup]="studentsService.studentEntryForm"
+                    (ngSubmit)="studentsService.updateMood?updateStudent(studentsService.studentEntryForm):addStudent(studentsService.studentEntryForm)">
+
+                    <div class="studentInput">
+                        <label for="studentNumber">Student Number</label>
+                        <input type="number" id="studentNumber" placeholder="Enter Student No"
+                            formControlName="studentNumber" class="form-control">
+                        <span class="form_validators"
+                            *ngIf="studentsService.studentNumber &&studentsService.studentNumber.touched&&studentsService.studentNumber.invalid">
+                            * Please Enter A Valid Number</span>
+                    </div>
+                    <div class="studentInput">
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName" placeholder="Enter Name" formControlName="studentName"
+                            class="form-control">
+                        <span class="form_validators"
+                            *ngIf="studentsService.studentName &&studentsService.studentName.touched&&studentsService.studentName.invalid">
+                            * Please Enter A Valid Name</span>
+                    </div>
+
+                    <div class="studentInput"><label for="birthDate">Birth Date</label>
+                        <input type="date" id="birthDate" formControlName="birthDate" [max]="minBirth"
+                            class="form-control">
+                        <span class="form_validators"
+                            *ngIf="studentsService.birthDate &&studentsService.birthDate.touched&&studentsService.birthDate.invalid">
+                            * Please Enter A Valid Birth Date</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="gender">Gender</label>
+                        <select id="gender" formControlName="gender" class="form-select">
+                            <option value="" disabled selected>Choose Gender</option>
+                            <option *ngFor="let gender of studentsService.genders" [value]="gender.id">
+                                {{gender.codeName}}
+                            </option>
+                        </select>
+                        <span class="form_validators"
+                            *ngIf="studentsService.gender &&studentsService.gender.touched&&studentsService.gender.invalid">
+                            * Please Enter A Valid Gender</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="number">Mobile No</label>
+                        <input type="tel" id="number" formControlName="number" class="form-control"
+                            placeholder="Enter Mobile.No">
+                        <span class="form_validators"
+                            *ngIf="studentsService.number &&studentsService.number.touched&&studentsService.number.invalid">
+                            * Please Enter A Valid Mobile No
+                        </span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="degree">Academic Degree</label>
+                        <select id="degree" formControlName="degree" class="form-select">
+                            <option value="" disabled selected>Choose Degree
+                            </option>
+                            <option *ngFor="let degree of studentsService.degrees" [value]="degree.id">
+                                {{degree.codeName}}
+                            </option>
+                        </select>
+                        <span class="form_validators"
+                            *ngIf="studentsService.degree &&studentsService.degree.touched&&studentsService.degree.invalid">
+                            * Please Enter A Valid Degree
+                        </span>
+                    </div>
+                    <div class="studentInput">
+                        <label for="faculty">Faculty</label>
+                        <select id="faculty" formControlName="faculty" class="form-select">
+                            <option value="" disabled selected>Choose Faculty</option>
+                            <option *ngFor="let faculty of studentsService.faculties" [value]="faculty.id">
+                                {{faculty.codeName}}</option>
+                        </select>
+                        <span class="form_validators"
+                            *ngIf="studentsService.faculty &&studentsService.faculty.touched&&studentsService.faculty.invalid">
+                            * Please Enter A Valid Faculty
+                        </span>
+                    </div>
+                    <div class="studentInput">
+                        <label for="major">Major Specialty</label>
+                        <select id="major" formControlName="major" class="form-select">
+                            <option value="" disabled selected>Choose Major</option>
+                            <option *ngFor="let major of studentsService.majors" [value]="major.id">
+                                {{major.codeName}}</option>
+
+                        </select>
+                        <span class="form_validators"
+                            *ngIf="studentsService.major &&studentsService.major.touched&&studentsService.major.invalid">
+                            * Please Enter A Valid Major
+                        </span>
+                    </div>
+                    <div class="studentInput">
+                        <label for="hours">Total Credit Hours</label>
+                        <input type="Number" id="hours" formControlName="hours" class="form-control"
+                            placeholder="Student Hours">
+                    </div>
+                    <div class="studentInput">
+                        <label for="gpa">Average GPA</label>
+                        <input type="Number" id="gpa" formControlName="gpa" class="form-control"
+                            placeholder="Student GPA">
+                    </div>
+                    <div class="studentInput button ">
+                        <button type="submit" *ngIf="studentsService.updateMood" class="btn btn-dark"
+                            (click)="studentsService.updateMoodTrigger()">Add New Student</button>
+
+                        <button type="submit" [disabled]="studentsService.studentEntryForm.invalid"
+                            *ngIf="!studentsService.updateMood" class="btn btn-dark">Save </button>
+                    </div>
+                    <div class="studentInput button">
+                        <button *ngIf="studentsService.updateMood" class="btn btn-dark"
+                            [disabled]="studentsService.studentEntryForm.invalid">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal" *ngIf="studentsService.popOutMood">
+        <div class="modal-content">
+            <span class="close" (click)="studentsService.popOutMoodTrigger()">&times;</span>
+            <p>{{studentsService.popOutMessage}}</p>
+        </div>
+    </div>
+</div>

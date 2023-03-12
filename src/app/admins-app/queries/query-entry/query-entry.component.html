@@ -1,0 +1,118 @@
+<div>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <h2>Search</h2>
+                <form class="queryEntry" [formGroup]="queryEntryForm" (ngSubmit)="queryCheck(queryEntryForm)">
+
+                    <div class="studentInput">
+                        <label for="studentNumber">Student Number</label>
+                        <input type="number" id="studentNumber" formControlName="studentNumber" class="form-control"
+                            placeholder="Enter Student No">
+                        <span class="form_validators"
+                            *ngIf="studentNumber && studentNumber.touched && studentNumber.invalid"> * Please Enter A
+                            Valid Number</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName" formControlName="studentName" class="form-control"
+                            placeholder="Enter Student Name">
+                        <span class="form_validators" *ngIf="studentName && studentName.touched && studentName.invalid">
+                            * Please Enter A Valid Name</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="studentFaculty">Student Faculty</label>
+                        <select id="studentFaculty" formControlName="studentFaculty" class="form-select">
+                            <option value="" disabled selected>Choose Faculty</option>
+                            <option *ngFor="let faculty of queriesService.faculties" [value]="faculty.codeName">
+                                {{faculty.codeName}}</option>
+                        </select>
+                        <span class="form_validators"
+                            *ngIf="studentFaculty && studentFaculty.touched&& studentFaculty.invalid"> * Please Enter A
+                            Valid Faculty</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="courseNumber">Course Number</label>
+                        <input type="number" id="courseNumber" formControlName="courseNumber" class="form-control"
+                            placeholder="Enter Course No">
+                        <span class="form_validators"
+                            *ngIf="courseNumber && courseNumber.touched&& courseNumber.invalid"> * Please Enter A Valid
+                            Number</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="courseName">Course Name</label>
+                        <input type="text" id="courseName" formControlName="courseName" class="form-control"
+                            placeholder="Enter Course Name">
+                        <span class="form_validators" *ngIf="courseName && courseName.touched&& courseName.invalid"> *
+                            Please Enter A Valid Name</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="courseFaculty">Course Faculty</label>
+                        <select id="courseFaculty" formControlName="courseFaculty" class="form-select">
+                            <option value="" disabled selected>Choose Faculty</option>
+                            <option *ngFor="let faculty of queriesService.faculties" [value]="faculty.codeName">
+                                {{faculty.codeName}}</option>
+                        </select>
+                        <span class="form_validators"
+                            *ngIf="courseFaculty && courseFaculty.touched&& courseFaculty.invalid"> * Please Enter A
+                            Valid Faculty</span>
+
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="major">Major Specialty</label>
+                        <select id="major" formControlName="major" class="form-select">
+                            <option value="" disabled selected>Choose Major</option>
+                            <option *ngFor="let major of queriesService.majors" [value]="major.codeName">
+                                {{major.codeName}}</option>
+                        </select>
+                        <span class="form_validators" *ngIf="major && major.touched&& major.invalid"> * Please Enter A
+                            Valid Major</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="result">Result</label>
+                        <select formControlName="result" class="form-select">
+                            <option value="" disabled selected>Choose Result</option>
+                            <option [value]=1>
+                                Pass
+                            </option>
+                            <option [value]=2>
+                                Fail
+                            </option>
+                        </select>
+                        <span class="form_validators" *ngIf="result && result.touched&& result.invalid"> * Please Enter
+                            A Valid Result</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="gradeGreater">Grade Greater Than</label>
+                        <input type="text" id="gradeGreater" formControlName="gradeGreater" class="form-control"
+                            placeholder="Enter Grade Greater">
+                        <span class="form_validators"
+                            *ngIf="gradeGreater && gradeGreater.touched&& gradeGreater.invalid"> * Please Enter A Valid
+                            Grade</span>
+
+                    </div>
+
+                    <div class="studentInput">
+                        <button type="submit" class="btn btn-dark button"
+                            [disabled]="queryEntryForm.invalid">Search</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div id="myModal" class="modal" *ngIf="queriesService.popOutMood">
+            <div class="modal-content">
+                <span class="close" (click)="queriesService.popOutMoodTrigger()">&times;</span>
+                <p>{{queriesService.popOutMessage}}</p>
+            </div>
+        </div>
+    </div>
+</div>

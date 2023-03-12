@@ -1,0 +1,99 @@
+<div>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <h2>Grades Entry</h2>
+                <form class="gradeEntry" [formGroup]="gradesService.gradesEntryForm"
+                    (ngSubmit)="gradesService.updateMood  ? updateGrade(gradesService.gradesEntryForm) : addGrade(gradesService.gradesEntryForm)">
+
+                    <div class="studentInput">
+                        <label for="studentNumber">Student Number</label>
+                        <input min="0" type="number" class="form-control" id="studentNumber"
+                            formControlName="studentNumber" (change)="checkStudent()" placeholder="Enter Student No"
+                            [(ngModel)]="studentSearch">
+                        <span class="form_validators"
+                            *ngIf="gradesService.studentNumber &&gradesService.studentNumber.touched&&gradesService.studentNumber.invalid">
+                            * Please Enter A Valid Number</span>
+                    </div>
+                    <div class="studentInput">
+                        <label for="studentName">Student Name</label>
+                        <input type="text" id="studentName" class="form-control" formControlName="studentName"
+                            placeholder="Student Name">
+                    </div>
+                    <div class="studentInput">
+                        <label for="courseNumber">Course Number</label>
+                        <input min="0" type="number" id="courseNumber" class="form-control"
+                            formControlName="courseNumber" (change)="checkCourse()" placeholder="Enter Course No"
+                            [(ngModel)]="courseSearch">
+                        <span class="form_validators"
+                            *ngIf="gradesService.courseNumber &&gradesService.courseNumber.touched&&gradesService.courseNumber.invalid">
+                            * Please Enter A Valid Number</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="courseName">Course Name</label>
+                        <input type="text" id="courseName" class="form-control" formControlName="courseName"
+                            placeholder="Course Name">
+                    </div>
+                    <div class="studentInput">
+                        <label for="firstExam">First Exam</label>
+                        <input min="0" max="20" type="number" id="firstExam" placeholder="Enter First Exam"
+                            class="form-control" formControlName="firstExam">
+                        <span class="form_validators"
+                            *ngIf="gradesService.firstExam && gradesService.firstExam.invalid"> * Please Enter A Valid
+                            Grade </span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="secondExam">Second Exam</label>
+                        <input min="0" max="20" type="Number" id="secondExam" class="form-control"
+                            placeholder="Enter Second Exam" formControlName="secondExam">
+                        <span class="form_validators"
+                            *ngIf="gradesService.secondExam && gradesService.secondExam.invalid"> * Please Enter A Valid
+                            Grade</span>
+
+                    </div>
+                    <div class="studentInput">
+                        <label for="finalExam">Final Exam</label>
+                        <input min="0" max="60" type="number" id="finalExam" class="form-control"
+                            placeholder="Enter Final Exam" formControlName="finalExam">
+                        <span class="form_validators"
+                            *ngIf="gradesService.finalExam && gradesService.finalExam.invalid"> * Please Enter A Valid
+                            Grade</span>
+
+                    </div>
+
+                    <div class="studentInput">
+                        <label for="grade">Grade</label>
+                        <input min="0" max="100" type="number" id="grade" class="form-control" formControlName="grade"
+                            placeholder="Grade">
+                    </div>
+                    <div class="studentInput">
+                        <label for="result">Result</label>
+                        <input type="text" id="result" class="form-control" formControlName="result"
+                            placeholder="Result">
+                    </div>
+                    <div class="studentInput">
+                        <button type="submit" *ngIf="gradesService.updateMood" class="btn btn-dark button"
+                            (click)="gradesService.updateMoodTrigger()">Add New Grade</button>
+
+                        <button type="submit" *ngIf="!gradesService.updateMood" class="btn btn-dark button"
+                            [disabled]="gradesService.gradesEntryForm.invalid">Save</button>
+                    </div>
+                    <div class="studentInput">
+                        <button type="submit" *ngIf="gradesService.updateMood" class="btn btn-dark button"
+                            [disabled]="gradesService.gradesEntryForm.invalid">Update</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+        <div id="myModal" class="modal" *ngIf="gradesService.popOutMood">
+            <div class="modal-content">
+                <span class="close" (click)="gradesService.popOutMoodTrigger()">&times;</span>
+                <p>{{gradesService.popOutMessage}}</p>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,31 @@
+<div class="container text-center align-items-center col-8">
+    <div class="row align-items-center">
+        <table class="table table-bordered ">
+            <thead class="table-light">
+                <tr>
+                    <th>Student Number</th>
+                    <th>Student Name</th>
+                    <th>Major Speciality</th>
+                    <th>Total Credit Hours</th>
+                    <th>Average Gpa</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of studentsService.allStudents" [id]="student.id"
+                    (click)="studentChoose(student.id)">
+                    <td>{{student.studentNumber}}</td>
+                    <td>{{student.name | titlecase}}</td>
+                    <td>{{student.majorSpecialty | titlecase}}</td>
+                    <td>{{student.totalCreditHours?student.totalCreditHours:"-"}}</td>
+                    <td>{{student.averageGpa?(student.averageGpa/100|percent ):"-"}}</td>
+                    <td (click)="deleteStudent(student.id)" class="delete_button"> <mat-icon>delete_forever</mat-icon>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+</div>

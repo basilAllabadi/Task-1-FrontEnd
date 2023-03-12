@@ -1,0 +1,26 @@
+<div class="container text-center justify-content-between col-9">
+    <div class="row align-items-center col-5">
+        <p>Student Number : {{studentsService.currentStudent.studentNumber}}</p>
+        <p>Student Name : {{studentsService.currentStudent.name}}</p>
+        <p>Faculty : {{studentsService.currentStudent.faculty}}</p>
+        <p>Academic Degree : {{studentsService.currentStudent.academicDegree}}</p>
+        <p>Major Specialty : {{studentsService.currentStudent.majorSpecialty}}</p>
+        <p> Gender : {{studentsService.currentStudent.gender}}</p>
+        <p> Mobile Number : {{studentsService.currentStudent.mobileNo}}</p>
+        <p>Total Credit Hours :
+            {{studentsService.currentStudent.totalCreditHours?studentsService.currentStudent.totalCreditHours:0}}</p>
+        <p>Average Gpa : {{studentsService.currentStudent.averageGpa?studentsService.currentStudent.averageGpa+"%":"-"}}
+        </p>
+    </div>
+    <div class="row align-items-center col-4">
+        <button *ngIf="!studentsService.updateMood" (click)="updateMoodTrigger()" class="btn btn-light">Update
+            Password</button>
+        <div *ngIf="studentsService.updateMood">
+            <form (ngSubmit)="studentsService.updatePassword(updateStudentPasswordForm)"
+                [formGroup]="updateStudentPasswordForm" class="row g-3">
+                <input type="password" placeholder="Password" formControlName="password" class="form-control">
+                <button type="submit" class="btn btn-light">Update</button>
+            </form>
+        </div>
+    </div>
+</div>

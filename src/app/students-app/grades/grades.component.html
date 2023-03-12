@@ -1,0 +1,29 @@
+<div class="container text-center align-items-center col-8">
+    <div class="row align-items-center">
+        <table class="table table-bordered ">
+            <thead class="table-light">
+                <tr>
+                    <th>Course Name</th>
+                    <th>First Exam</th>
+                    <th>Second Exam</th>
+                    <th>Final Exam</th>
+                    <th>Grade</th>
+                    <th>Result</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let grade of studentsService.grades">
+                    <td>{{grade.courseName}}</td>
+                    <td>{{grade.firstexam}}</td>
+                    <td>{{grade.secondexam}}</td>
+                    <td>{{grade.finalexam}}</td>
+                    <td>{{grade.grade/100|percent}}</td>
+                    <td *ngIf="!(grade.finalexam && grade.secondexam && grade.finalexam)">-</td>
+                    <td *ngIf="grade.finalexam && grade.secondexam && grade.finalexam">{{grade.grade>=50?"Pass":"Fail"}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

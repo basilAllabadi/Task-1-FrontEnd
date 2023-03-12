@@ -1,0 +1,26 @@
+<div class="container text-center align-items-center col-10">
+    <div class="row align-items-center">
+        <table class="table table-bordered ">
+            <thead class="table-light">
+                <tr>
+                    <th>Course Number</th>
+                    <th>Course Name</th>
+                    <th>Faculty</th>
+                    <th>Course Credit Hours</th>
+                    <th>Start Date</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let course of coursesService.allCourses" [id]="course.id" (click)="courseChoose(course.id)">
+                    <td>{{course.courseNumber}}</td>
+                    <td>{{course.name | titlecase}}</td>
+                    <td>{{course.faculty | titlecase}}</td>
+                    <td>{{course.courseCreditHours}}</td>
+                    <td>{{course.courseStartDate|date}}</td>
+                    <td (click)="deleteCourse(course.id)" class="delete_button"> <mat-icon>delete_forever</mat-icon></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
